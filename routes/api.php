@@ -19,8 +19,9 @@ use Illuminate\Support\Facades\Route;
 // });
 
 
-Route::apiResource("customer" ,"CustomerController");
-Route::apiResource("user" ,"UserController");
-/*
+Route::apiResource("customer" ,"CustomerController")->middleware('auth:api');
+Route::apiResource("user" ,"UserController")->middleware("api_secure");
 
-*/
+
+Route::post("user/token/" , "UserController@get_token");
+Route::post("user/register/" , "UserController@register");
