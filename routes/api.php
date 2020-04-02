@@ -20,8 +20,12 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::apiResource("customer" ,"CustomerController")->middleware('auth:api');
-Route::apiResource("user" ,"UserController")->middleware("api_secure");
+Route::apiResource("user" ,"UserController");//->middleware("api_secure");
 
 
-Route::post("user/token/" , "UserController@get_token");
-Route::post("user/register/" , "UserController@register");
+// Route::post("user/token/" , "UserController@get_token");
+// Route::post("user/register/" , "UserController@register");
+
+Route::post("login" , "PassportUserController@login");
+Route::post("register" , "PassportUserController@register");
+Route::post("details" ,"PassportUserController@details")->middleware('auth:api');
